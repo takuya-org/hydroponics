@@ -14,31 +14,40 @@ class Motor:
     #PWM
     PWM = 17
 
-    GPIO.setFunction(MOTORA_1, GPIO.OUT)
-    GPIO.setFunction(MOTORA_2, GPIO.OUT)
-    GPIO.setFunction(MOTORB_1, GPIO.OUT)
-    GPIO.setFunction(MOTORB_2, GPIO.OUT)
-    GPIO.setFunction(PWM, GPIO.OUT)
-    GPIO.digitalWrite(PWM, GPIO.HIGH)
+    def __init__(self):
+	    Motor.GPIO.setFunction(Motor.MOTORA_1, Motor.GPIO.OUT)
+        Motor.GPIO.setFunction(Motor.MOTORA_2, Motor.GPIO.OUT)
+        Motor.GPIO.setFunction(Motor.MOTORB_1, Motor.GPIO.OUT)
+    	Motor.GPIO.setFunction(Motor.MOTORB_2, Motor.GPIO.OUT)
+    	Motor.GPIO.setFunction(Motor.PWM, Motor.GPIO.OUT)
+    	Motor.GPIO.digitalWrite(Motor.PWM, Motor.GPIO.HIGH)
 
     def forward(self):
-        self.GPIO.digitalWrite(self.MOTORA_1, self.GPIO.HIGH)
-        self.GPIO.digitalWrite(self.MOTORA_2, self.GPIO.LOW)
-        self.GPIO.digitalWrite(self.MOTORB_1, self.GPIO.LOW)
-        self.GPIO.digitalWrite(self.MOTORB_2, self.GPIO.HIGH)
+        Motor.GPIO.digitalWrite(Motor.MOTORA_1, Motor.GPIO.HIGH)
+        Motor.GPIO.digitalWrite(Motor.MOTORA_2, Motor.GPIO.LOW)
+        Motor.GPIO.digitalWrite(Motor.MOTORB_1, Motor.GPIO.LOW)
+        Motor.GPIO.digitalWrite(Motor.MOTORB_2, Motor.GPIO.HIGH)
         time.sleep(2)
-        self.stop()
+        Motor.stop()
+
+    def back(self):
+        Motor.GPIO.digitalWrite(Motor.MOTORA_1, Motor.GPIO.LOW)
+        Motor.GPIO.digitalWrite(Motor.MOTORA_2, Motor.GPIO.HIGH)
+        Motor.GPIO.digitalWrite(Motor.MOTORB_1, Motor.GPIO.HIGH)
+        Motor.GPIO.digitalWrite(Motor.MOTORB_2, Motor.GPIO.LOW)
+        time.sleep(2)
+        Motor.stop()
 
     def stop(self):
-        self.GPIO.digitalWrite(self.MOTORA_1, self.GPIO.LOW)
-        self.GPIO.digitalWrite(self.MOTORA_2, self.GPIO.LOW)
-        self.GPIO.digitalWrite(self.MOTORB_1, self.GPIO.LOW)
-        self.GPIO.digitalWrite(self.MOTORB_2, self.GPIO.LOW)
+        Motor.GPIO.digitalWrite(Motor.MOTORA_1, Motor.GPIO.LOW)
+        Motor.GPIO.digitalWrite(Motor.MOTORA_2, Motor.GPIO.LOW)
+        Motor.GPIO.digitalWrite(Motor.MOTORB_1, Motor.GPIO.LOW)
+        Motor.GPIO.digitalWrite(Motor.MOTORB_2, Motor.GPIO.LOW)
 
-motor = Motor()
-def setup():
-    pass
+# motor = Motor()
+# def setup():
+#     pass
 
-def loop():
-    motor.forward()
-    time.sleep(2)
+# def loop():
+#     motor.forward()
+#     time.sleep(2)
