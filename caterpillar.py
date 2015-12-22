@@ -19,8 +19,8 @@ class Motor:
         Motor.GPIO.setFunction(Motor.MOTORA_2, Motor.GPIO.OUT)
         Motor.GPIO.setFunction(Motor.MOTORB_1, Motor.GPIO.OUT)
         Motor.GPIO.setFunction(Motor.MOTORB_2, Motor.GPIO.OUT)
-        Motor.GPIO.setFunction(Motor.PWM, Motor.GPIO.OUT)
-        Motor.GPIO.digitalWrite(Motor.PWM, Motor.GPIO.HIGH)
+        Motor.GPIO.setFunction(Motor.PWM, Motor.GPIO.PWM)
+        Motor.GPIO.pwmWrite(Motor.PWM, 5.0)
 
     def forward(self):
         Motor.GPIO.digitalWrite(Motor.MOTORA_1, Motor.GPIO.HIGH)
