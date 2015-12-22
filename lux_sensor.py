@@ -17,12 +17,10 @@ class Lux(object):
         MCP3008経由でアナログセンサからのデータを受け取る。
         channelはMCP3008の入力チャンネルで、0から7の値
         # """
-        # adc = spi.xfer2([1,(8+channel)<<4,0])
-        # data = ((adc[1]&3) << 8)     + adc[2]
-        # return data
-        return randint(1024)
+        adc = spi.xfer2([1,(8+channel)<<4,0])
+        data = ((adc[1]&3) << 8)     + adc[2]
+        return data
 
-        return
     def set_value(self):
         self.cds0 = self.read_channel(0)
         self.cds1 = self.read_channel(1)
@@ -75,5 +73,3 @@ class Lux(object):
       #
 
       #test
-lux_sensor = Lux
-print(lux_sensor.cds0)
