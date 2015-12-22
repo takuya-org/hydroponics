@@ -3,11 +3,10 @@
 
 import time
 import sys
-#import spidev
-from numpy.random import *
+import spidev
 
-#spi = spidev.SpiDev()
-#spi.open(0,0)
+spi = spidev.SpiDev()
+spi.open(0,0)
 class Lux(object):
 
     def __init__(self):
