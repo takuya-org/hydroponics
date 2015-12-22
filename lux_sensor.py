@@ -33,7 +33,7 @@ class Lux(object):
                          "cds2":self.cds2,
                          "cds3":self.cds3}
         print(self.lux_list)
-        max_lux = max(self.lux_list, key=(lambda x: self.lux_list[x]))
+        max_lux = min(self.lux_list, key=(lambda x: self.lux_list[x]))
         if max_lux == "cds0":
           return [2,4,2]
         elif max_lux == "cds1":
