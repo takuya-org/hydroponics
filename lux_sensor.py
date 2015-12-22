@@ -3,24 +3,26 @@
 
 import time
 import sys
-import spidev
+#import spidev
+from numpy.random import *
 
-spi = spidev.SpiDev()
-spi.open(0,0)
-class Lux:
-
+#spi = spidev.SpiDev()
+#spi.open(0,0)
+class Lux(object):
 
     def __init__(self):
         self.set_value()
-
-    def read_channel(channel):
+    def read_channel(self,channel):
         """
         MCP3008経由でアナログセンサからのデータを受け取る。
         channelはMCP3008の入力チャンネルで、0から7の値
-        """
-        adc = spi.xfer2([1,(8+channel)<<4,0])
-        data = ((adc[1]&3) << 8)     + adc[2]
-        return data
+        # """
+        # adc = spi.xfer2([1,(8+channel)<<4,0])
+        # data = ((adc[1]&3) << 8)     + adc[2]
+        # return data
+        return randint(1024)
+
+        return
     def set_value(self):
         self.cds0 = self.read_channel(0)
         self.cds1 = self.read_channel(1)
@@ -29,11 +31,12 @@ class Lux:
 
     def decision_move(self):
         self.set_value()
-        lux = {"cds0":self.cds0,
-               "cds1":self.cds1,
-               "cds2":self.cds2,
-               "cds3":self.cds3}
-        max_lux = max(lux, key=(lambda x: lux[x]))
+        self.lux_list = {"cds0":self.cds0,
+                         "cds1":self.cds1,
+                         "cds2":self.cds2,
+                         "cds3":self.cds3}
+        print(self.lux_list)
+        max_lux = max(self.lux_list, key=(lambda x: self.lux_list[x]))
         if max_lux == "cds0":
           return [2,4,2]
         elif max_lux == "cds1":
@@ -43,9 +46,14 @@ class Lux:
         elif max_lux == "cds3":
           return [8,6,8]
 
-    def get_avglux(self):
+    def get_avg(self):
         self.set_value()
+        print(self.cds0)
+        print(self.cds1)
+        print(self.cds2)
+        print(self.cds3)
         return (self.cds0+self.cds1+self.cds2+self.cds3)/4
+
 
 
 
@@ -67,3 +75,5 @@ class Lux:
       #
 
       #test
+lux_sensor = Lux
+print(lux_sensor.cds0)
