@@ -1,30 +1,19 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
+import sensor
 
-import time
-import sys
-import spidev
 
-spi = spidev.SpiDev()
-spi.open(0,0)
 class Lux(object):
 
     def __init__(self):
         self.set_value()
-    def read_channel(self,channel):
-        """
-        MCP3008経由でアナログセンサからのデータを受け取る。
-        channelはMCP3008の入力チャンネルで、0から7の値
-        # """
-        adc = spi.xfer2([1,(8+channel)<<4,0])
-        data = ((adc[1]&3) << 8)     + adc[2]
-        return data
+        self.s = sensor.Sensor()
 
     def set_value(self):
-        self.cds0 = self.read_channel(0)
-        self.cds1 = self.read_channel(1)
-        self.cds2 = self.read_channel(2)
-        self.cds3 = self.read_channel(3)
+        self.cds0 = self.s.read_channel(0)
+        self.cds1 = self.s.read_channel(1)
+        self.cds2 = self.s.read_channel(2)
+        self.cds3 = self.s.read_channel(3)
 
     def decision_move(self):
         self.set_value()
