@@ -7,16 +7,16 @@ class Lux(object):
 
     def __init__(self):
         self.s = sensor.Sensor()
-        self.set_value()
+        self.read_sensor_value()
 
-    def set_value(self):
+    def read_sensor_value(self):
         self.cds0 = self.s.read_channel(0)
         self.cds1 = self.s.read_channel(1)
         self.cds2 = self.s.read_channel(2)
         self.cds3 = self.s.read_channel(3)
 
-    def decision_move(self):
-        self.set_value()
+    def decision_direction(self):
+        self.read_sensor_value()
         self.lux_list = {"cds0":self.cds0,
                          "cds1":self.cds1,
                          "cds2":self.cds2,
@@ -32,8 +32,8 @@ class Lux(object):
         elif max_lux == "cds3":
           return [8,6,8]
 
-    def get_avg(self):
-        self.set_value()
+    def get_average(self):
+        self.read_sensor_value()
         print(self.cds0)
         print(self.cds1)
         print(self.cds2)
