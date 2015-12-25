@@ -60,16 +60,16 @@ class Motor:
         Motor.GPIO.digitalWrite(Motor.MOTORB_1, Motor.GPIO.LOW)
         Motor.GPIO.digitalWrite(Motor.MOTORB_2, Motor.GPIO.LOW)
 
-motor = Motor()
-def setup():
-    pass
+# motor = Motor()
+# def setup():
+#     pass
 
-def loop():
+# def loop():
     # motor.forward()
     # time.sleep(5)
     # motor.back()
     # time.sleep(5)
-    motor.turnLeft()
-    time.sleep(5)
-    motor.turnRight()
-    time.sleep(5)
+    # motor.turnLeft()
+    # time.sleep(5)
+    # motor.turnRight()
+    # time.sleep(5)
