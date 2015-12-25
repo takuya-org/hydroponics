@@ -6,8 +6,8 @@ import sensor
 class Lux(object):
 
     def __init__(self):
-        self.set_value()
         self.s = sensor.Sensor()
+        self.set_value()
 
     def set_value(self):
         self.cds0 = self.s.read_channel(0)
