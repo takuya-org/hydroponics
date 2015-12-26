@@ -8,8 +8,8 @@ class Main(object):
         self.motor = motor.ControlMotor()
 
     def execute(self, interval_time):
-        direction_list = self.lux_sensor.dicision_direction()
-        self.motor.movefromsensordata(direction_list)
+        decision_list = self.lux_sensor.decision_direction()
+        self.motor.movefromsensordata(decision_list)
         time.sleep(interval_time)
 
 if __name__ == "__main__":
