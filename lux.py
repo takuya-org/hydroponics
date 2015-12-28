@@ -28,15 +28,19 @@ class Lux(object):
         max_lux = min(self.lux_list, key=(lambda x: self.lux_list[x]))
 
         lux_val_ave = self.pop_average_value()
-        if self.lux_list[max_lux] > lux_val_ave:
-            if max_lux == "cds0":
-                return [2, 4, 2]
-            elif max_lux == "cds1":
-                return [2, 6, 2]
-            elif max_lux == "cds2":
-                return [8, 4, 8]
-            elif max_lux == "cds3":
-                return [8, 6, 8]
+
+        # 平均より暗くなってなければ
+        if not self.lux_list[max_lux] > lux_val_ave:
+            return ()
+
+        if max_lux == "cds0":
+            return [2, 4, 2]
+        elif max_lux == "cds1":
+            return [2, 6, 2]
+        elif max_lux == "cds2":
+            return [8, 4, 8]
+        elif max_lux == "cds3":
+            return [8, 6, 8]
 
     def get_average(self):
         self.read_sensor_value()
