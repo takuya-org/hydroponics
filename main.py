@@ -1,18 +1,46 @@
 import ControlMotor as motor
 import lux
 import time
+import enum
+
 
 class Main(object):
-    def __init__(self):
+    PatternFunc = enum.Enum("PatternFunc", "read exec")
+
+    def __init__(self, execute_queue):
         self.lux_sensor = lux.Lux()
         self.motor = motor.ControlMotor()
+        self.exe_q = execute_queue
 
-    def execute(self, interval_time):
+    def execute(self, interval_sec):
+        for exe in self.exe_q:
+            if exe is Main.PatternFunc.read:
+                self._sensor_read_store()
+            elif exe is Main.PatternFunc.exec:
+                self._read_exec_motor()
+            else:
+                pass
+            time.sleep(interval_sec)
+
+    def _sensor_read_store(self):
+        self.lux_sensor.get_average()
+
+    def _read_exec_motor(self):
         decision_list = self.lux_sensor.decision_direction()
-        self.motor.movefromsensordata(decision_list)
-        time.sleep(interval_time)
+        if len(decision_list) > 0:
+            self.motor.movefromsensordata(decision_list)
+
 
 if __name__ == "__main__":
-    main = Main()
+    exe_q = (
+        Main.PatternFunc.read,
+        Main.PatternFunc.read,
+        Main.PatternFunc.read,
+        Main.PatternFunc.read,
+        Main.PatternFunc.read,
+        Main.PatternFunc.exec
+    )
+
+    main = Main(exe_q)
     while True:
-        main.execute(60*10) # 10分に1度
+        main.execute(60 * 10)  # 10分に1度
