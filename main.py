@@ -5,7 +5,7 @@ import enum
 
 
 class Main(object):
-    PatternFunc = enum.Enum("PatternFunc", "read exec")
+    PatternFunc = enum.Enum("PatternFunc", "read maybe_motor")
 
     def __init__(self, execute_queue):
         self.lux_sensor = lux.Lux()
@@ -16,7 +16,7 @@ class Main(object):
         for exe in self.exe_q:
             if exe is Main.PatternFunc.read:
                 self._sensor_read_store()
-            elif exe is Main.PatternFunc.exec:
+            elif exe is Main.PatternFunc.maybe_motor:
                 self._read_exec_motor()
             else:
                 pass
@@ -38,7 +38,7 @@ if __name__ == "__main__":
         Main.PatternFunc.read,
         Main.PatternFunc.read,
         Main.PatternFunc.read,
-        Main.PatternFunc.exec
+        Main.PatternFunc.maybe_motor
     )
 
     main = Main(exe_q)
