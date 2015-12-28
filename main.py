@@ -20,7 +20,7 @@ class Main(object):
                 self._read_exec_motor()
             else:
                 pass
-        time.sleep(interval_sec)
+            time.sleep(interval_sec)
 
     def _sensor_read_store(self):
         self.lux_sensor.get_average()
