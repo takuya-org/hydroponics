@@ -1,6 +1,6 @@
 class Temperature(object):
-	DIR = '/sys/bus/w1/devices/'
-	DEVICE_NAME = ''
+	DIR = '/sys/bus/w1/devices/w1_bus_master1/'
+	DEVICE_NAME = '28-011590281ff'
 	FILE_NAME = '/w1_slave'
 
     def __init__(self):
