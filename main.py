@@ -1,4 +1,5 @@
 import ControlMotor as motor
+import temperature_sensor as temperature
 import lux
 import time
 import enum
@@ -11,6 +12,7 @@ class Main(object):
         self.lux_sensor = lux.Lux()
         self.motor = motor.ControlMotor()
         self.exe_q = execute_queue
+        self.temp_sensor = temperature.Temperature()
 
     def execute(self, interval_sec):
         for exe in self.exe_q:
@@ -26,6 +28,7 @@ class Main(object):
         self.lux_sensor.get_average()
 
     def _read_exec_motor(self):
+        self.temp_sensor.storeTemperatureData()
         decision_list = self.lux_sensor.decision_direction()
         if len(decision_list) > 0:
             self.motor.movefromsensordata(decision_list)

@@ -1,3 +1,5 @@
+import db_temperature
+
 class Temperature(object):
     DIR = '/sys/bus/w1/devices/'
     DEVICE_NAME = '28-0115902811ff'
@@ -8,3 +10,9 @@ class Temperature(object):
             data = f.read()
         temp = float(data[data.index('t=')+2:])/1000
         return temp
+
+    def storeTemperatureData(self):
+        db_con = db_temperature.DbOperation()
+        temperature = self.getTemprature()
+        db_con.insertRecord(temperature)
+        db_con.connectionClose()
