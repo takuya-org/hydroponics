@@ -8,7 +8,7 @@ class DbOperation(object):
     def __init__(self):
         self.con = sqlite3.Connection(os.environ.get(DbOperation.PATH))
         c = self.con.cursor()
-        c.execute("""CREATE TABLE IF NOT EXISTS temp(date text, temp_c real, PRIMARY KEY(date))""")
+        c.execute("""CREATE TABLE IF NOT EXISTS temp(date text, temp_c real""")
 
     def insertRecord(self, temp):
         c = self.con.cursor()
