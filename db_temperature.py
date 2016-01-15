@@ -17,5 +17,5 @@ class DbOperation(object):
         c.execute("INSERT INTO temp(date, temp_c) VALUES(?, ?)", (now_date, temp))
         self.con.commit()
 
-    def connectionClose():
+    def connectionClose(self):
         self.con.close()
