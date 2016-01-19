@@ -30,6 +30,7 @@ class Main(object):
     def _read_exec_motor(self):
         self.temp_sensor.storeTemperatureData()
         decision_list = self.lux_sensor.decision_direction()
+        print(decision_list)
         if len(decision_list) > 0:
             self.motor.movefromsensordata(decision_list)
 

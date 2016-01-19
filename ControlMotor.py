@@ -6,7 +6,6 @@ class ControlMotor:
         self.motor = caterpillar.Motor()
 
     def movefromsensordata(self, list):
-        print(list)
         for item in list:
             if item == 2:
                 self.motor.forward()
