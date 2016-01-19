@@ -30,8 +30,8 @@ class Lux(object):
         lux_val_ave = self.pop_average_value()
 
         # 平均より暗くなってなければ
-        if not self.lux_list[max_lux] > lux_val_ave:
-            return ()
+        #if not self.lux_list[max_lux] > lux_val_ave:
+        #    return ()
 
         if max_lux == "cds0":
             return [2, 4, 2]
