@@ -1,11 +1,17 @@
 import webiopi
 import time
 
-class Motor:
+class Motor(object):
+    _instance = None
     GPIO = webiopi.GPIO
     PIN = {'MOTORA_1':22, 'MOTORA_2':27, 'MOTORB_1':23, 'MOTORB_2':24, 'PWM':18}
     #周波数
     PWM_FREQUENCY = 0.3
+
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = object.__new__(cls)
+        return cls._instance
 
     def __init__(self):
         Motor.GPIO.setFunction(Motor.PIN['MOTORA_1'], Motor.GPIO.OUT)
