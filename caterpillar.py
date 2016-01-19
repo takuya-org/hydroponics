@@ -5,7 +5,7 @@ class Motor:
     GPIO = webiopi.GPIO
     PIN = {'MOTORA_1':22, 'MOTORA_2':27, 'MOTORB_1':23, 'MOTORB_2':24, 'PWM':18}
     #周波数
-    PWM_FREQUENCY = 0.05
+    PWM_FREQUENCY = 0.3
 
     def __init__(self):
         Motor.GPIO.setFunction(Motor.PIN['MOTORA_1'], Motor.GPIO.OUT)
