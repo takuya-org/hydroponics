@@ -15,4 +15,4 @@ class ControlMotor:
                 self.motor.turnRight()
             if item == 8:
                 self.motor.back()
-            time.sleep(1)
+            time.sleep(4)
