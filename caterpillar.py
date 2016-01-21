@@ -20,6 +20,7 @@ class Motor(object):
         self.GPIO.setFunction(self.PIN['MOTORB_2'], self.GPIO.OUT)
         self.GPIO.setFunction(self.PIN['PWM'], self.GPIO.PWM)
         self.GPIO.pwmWrite(self.PIN['PWM'], self.PWM_FREQUENCY)
+        self.stop()
 
     def forward(self):
         self.GPIO.digitalWrite(self.PIN['MOTORA_1'], self.GPIO.HIGH)
@@ -42,7 +43,7 @@ class Motor(object):
         self.GPIO.digitalWrite(self.PIN['MOTORA_2'], self.GPIO.HIGH)
         self.GPIO.digitalWrite(self.PIN['MOTORB_1'], self.GPIO.LOW)
         self.GPIO.digitalWrite(self.PIN['MOTORB_2'], self.GPIO.HIGH)
-        time.sleep(3.5)
+        time.sleep(1.7)
         self.stop()
 
     def turnRight(self):
@@ -50,7 +51,7 @@ class Motor(object):
         self.GPIO.digitalWrite(self.PIN['MOTORA_2'], self.GPIO.LOW)
         self.GPIO.digitalWrite(self.PIN['MOTORB_1'], self.GPIO.HIGH)
         self.GPIO.digitalWrite(self.PIN['MOTORB_2'], self.GPIO.LOW)
-        time.sleep(3.5)
+        time.sleep(1.7)
         self.stop()
 
     def stop(self):
