@@ -23,14 +23,7 @@ class Motor(object):
         self.stop()
 
     def forward(self):
-        self.GPIO.digitalWrite(self.PIN['MOTORA_1'], self.GPIO.HIGH)
-        self.GPIO.digitalWrite(self.PIN['MOTORA_2'], self.GPIO.LOW)
-        self.GPIO.digitalWrite(self.PIN['MOTORB_1'], self.GPIO.LOW)
-        self.GPIO.digitalWrite(self.PIN['MOTORB_2'], self.GPIO.HIGH)
-        time.sleep(3.8)
-        self.stop()
-
-    def back(self):
+        print('forward')
         self.GPIO.digitalWrite(self.PIN['MOTORA_1'], self.GPIO.LOW)
         self.GPIO.digitalWrite(self.PIN['MOTORA_2'], self.GPIO.HIGH)
         self.GPIO.digitalWrite(self.PIN['MOTORB_1'], self.GPIO.HIGH)
@@ -38,7 +31,17 @@ class Motor(object):
         time.sleep(3.8)
         self.stop()
 
+    def back(self):
+        print('back')
+        self.GPIO.digitalWrite(self.PIN['MOTORA_1'], self.GPIO.HIGH)
+        self.GPIO.digitalWrite(self.PIN['MOTORA_2'], self.GPIO.LOW)
+        self.GPIO.digitalWrite(self.PIN['MOTORB_1'], self.GPIO.LOW)
+        self.GPIO.digitalWrite(self.PIN['MOTORB_2'], self.GPIO.HIGH)
+        time.sleep(3.8)
+        self.stop()
+
     def turnLeft(self):
+        print('turnL')
         self.GPIO.digitalWrite(self.PIN['MOTORA_1'], self.GPIO.LOW)
         self.GPIO.digitalWrite(self.PIN['MOTORA_2'], self.GPIO.HIGH)
         self.GPIO.digitalWrite(self.PIN['MOTORB_1'], self.GPIO.LOW)
@@ -47,6 +50,7 @@ class Motor(object):
         self.stop()
 
     def turnRight(self):
+        print('turnR')
         self.GPIO.digitalWrite(self.PIN['MOTORA_1'], self.GPIO.HIGH)
         self.GPIO.digitalWrite(self.PIN['MOTORA_2'], self.GPIO.LOW)
         self.GPIO.digitalWrite(self.PIN['MOTORB_1'], self.GPIO.HIGH)
