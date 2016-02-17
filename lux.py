@@ -27,6 +27,21 @@ class Lux(object):
         print(self.lux_list)
         max_lux = min(self.lux_list, key=(lambda x: self.lux_list[x]))
 
+        sorted_list = sorted(self.lux_list,key=(lambda x: self.lux_list[x]))     #lux_listをソートして   
+        
+        second_lux = sorted_list[1]                                            #2番目に明るいやつ取得          
+
+        #if max_lux > (second_lux - 20):
+        if (second_lux - max_lux) < 20:
+            if max_lux == "cds0" and second_lux == "cds1":   #前
+                return [2, 2, 2]
+            if max_lux == "cds0" and second_lux == "cds2":   #左
+                return [4, 2, 2]
+            if max_lux == "cds1" and second_lux == "cds3":   #右
+                return [6, 2, 2]
+            if max_lux == "cds2" and second_lux == "cds3":   #後
+                return [8, 8, 8]
+
         lux_val_ave = self.pop_average_value()
 
         # 平均より暗くなってなければ
