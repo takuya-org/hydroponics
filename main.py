@@ -47,4 +47,4 @@ if __name__ == "__main__":
 
     main = Main(exe_q)
     while True:
-        main.execute(60 * 10)  # 10分に1度
+        main.execute(3)  # 10分に1度
